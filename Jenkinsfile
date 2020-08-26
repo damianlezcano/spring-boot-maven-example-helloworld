@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     openshift.withCluster {
-                        openshift.withProject("app-project2") {
+                        openshift.withProject("esb-dev") {
                             openshift.selector("bc", env.APP_NAME).startBuild("--from-dir=./target", "--wait=true");
                         }
                     }
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     openshift.withCluster {
-                        openshift.withProject("app-project2") {
+                        openshift.withProject("esb-dev") {
                             env.TAG = readMavenPom().getVersion()
                             openshift.tag("${APP_NAME}:latest", "${APP_NAME}:${TAG}")
                         }
@@ -49,7 +49,7 @@ pipeline {
             steps {
                 script {
                     openshift.withCluster {
-                        openshift.withProject("app-project2") {
+                        openshift.withProject("esb-dev") {
                             openshift.set("triggers", "dc/${APP_NAME}", "--remove-all")
                             openshift.set("triggers", "dc/${APP_NAME}", "--from-image=${APP_NAME}:${TAG}", "-c ${APP_NAME}")
                             openshift.selector("dc", env.APP_NAME).rollout().status()
