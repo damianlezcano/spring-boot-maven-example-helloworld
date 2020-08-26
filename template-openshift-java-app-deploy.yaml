@@ -124,7 +124,7 @@ parameters:
   displayName: Git Repository
   description: Git Repository
   required: true
-  value: https://github.com/leandroberetta/hello-openshift.git
+  value: https://github.com/damianlezcano/spring-boot-maven-example-helloworld.git
 - name: GIT_BRANCH
   displayName: Git Branch
   description: Git Branch
